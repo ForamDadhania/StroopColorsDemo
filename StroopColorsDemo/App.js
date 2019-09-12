@@ -20,7 +20,12 @@ constructor() {
   super()
     this.state = {
       count: 0,
-      NameHolder : " "
+
+      NameHolder : " ",
+
+      randomColors: '#000000',
+
+      background: '#00BCD4'
     }
     
 }
@@ -28,23 +33,34 @@ constructor() {
 GenerateRandomColors=()=> 
 {
   var colors = ["Orange", "White", "Yellow", "Red"];
+
   var RandomColor = colors[Math.floor(Math.random() * colors.length)];
+
+  var candy = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+
+  var backgroundBow = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+ 
     
   this.setState({
     
     NameHolder : RandomColor,
-    count: this.state.count + 1
+    
+    count: this.state.count + 1,
+
+    randomColors: candy,
+
+    background: backgroundBow
     
     })
 }
 
 render() {
   return (
-      <View style={styles.MainContainer}>
-    
-      <Text>You clicked {this.state.count} times</Text>
-    
-      <Text style={{marginBottom: 10, fontSize: 20}}>{this.state.NameHolder}</Text>
+      <View style={[styles.MainContainer, {backgroundColor: this.state.background}]}>
+
+      <Text style={{fontSize: 20}}>You clicked {this.state.count} times.</Text>
+
+       <Text style={{marginBottom: 10, fontSize: 40, color: this.state.randomColors}}>{this.state.NameHolder}</Text>
  
        <Button title="Generate Random colors" onPress={this.GenerateRandomColors}/>
         
