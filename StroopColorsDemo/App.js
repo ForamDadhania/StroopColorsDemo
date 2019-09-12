@@ -12,92 +12,57 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput
+  Button
 } from 'react-native';
 
 export default class App extends Component {
 constructor() {
   super()
     this.state = {
-      value: "Foram"
+      count: 0,
+      NameHolder : " "
     }
-    this.handleUserInput = this.handleUserInput.bind(this)
+    
 }
 
-handleUserInput(userInput) {
-    this.setState({
-        value: userInput
+GenerateRandomColors=()=> 
+{
+  var colors = ["Orange", "White", "Yellow", "Red"];
+  var RandomColor = colors[Math.floor(Math.random() * colors.length)];
+    
+  this.setState({
+    
+    NameHolder : RandomColor,
+    count: this.state.count + 1
+    
     })
 }
 
 render() {
   return (
-    <View style={styles.container}>
+      <View style={styles.MainContainer}>
     
-        <Text style={styles.userColor}> Insert your color</Text>
+      <Text>You clicked {this.state.count} times</Text>
     
-            <TextInput
-                defaultValue={this.state.value}
-                onChangeText={this.handleUserInput}
-            />
-            <Text> Your favourite color is {this.state.value} </Text>
-    </View>
+      <Text style={{marginBottom: 10, fontSize: 20}}>{this.state.NameHolder}</Text>
+ 
+       <Button title="Generate Random colors" onPress={this.GenerateRandomColors}/>
+        
+      </View>
+ 
     );
+  }
 }
 
-}
-
-const styles = StyleSheet.create({
-  container: {
+const styles = StyleSheet.create(
+{
+  MainContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-
-    // flexDirection: 'row'
-    //always colomn by default
-  },
-
-    userColor: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      fontSize: 30,
-      color: 'blue'
-    }
-
-  // half1: {
-  //  flex: 1,
-  //  justifyContent: 'center',
-  //  alignItems: 'center',
-  //  backgroundColor: 'green'
-  // },
-
-  // half2: {
-  //  flex: 1,
-  //  flexDirection: 'row',
-  //  backgroundColor: 'blue'
-  // },
-
-  // half2x: {
-  //  flex: 1,
-  //  justifyContent: 'center',
-  //  alignItems: 'center',
-  // },
-
-  // half21: {
-  //  backgroundColor: 'orange'
-  // },
-
-  // half22: {
-  //  backgroundColor: 'yellow'
-  // },
-
-  // text: {
-  //  fontSize: 25,
-  //  color: 'black'
-  // }
-
-  
-})
+  }
+ 
+});
 
 
 
